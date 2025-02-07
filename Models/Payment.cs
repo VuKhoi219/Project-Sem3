@@ -10,44 +10,17 @@ public class Payment
 
     [Required]
     public int UserId { get; set; }
+    public User User { get; set; }
 
     [Required]
     public int ContractId { get; set; }
+    public InsuranceContract Contract { get; set; }
 
     [Required]
-    [Column(TypeName = "decimal(10,2)")]
     public decimal Amount { get; set; }
 
-    [Required]
-    public PaymentMethod PaymentMethod { get; set; }
+    public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
 
     [Required]
-    public DateTime PaymentDate { get; set; } = DateTime.Now;
-
-    [Required]
-    public PaymentStatus Status { get; set; }
-
-    // Khai báo quan hệ với User và Contract
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; }
-
-    [ForeignKey("ContractId")]
-    public virtual InsuranceContract Contract { get; set; }
-}
-
-// Enum cho phương thức thanh toán
-public enum PaymentMethod
-{
-    CreditCard,
-    BankTransfer,
-    Momo,
-    PayPal
-}
-
-// Enum cho trạng thái thanh toán
-public enum PaymentStatus
-{
-    Success,
-    Failed,
-    Pending
+    public string PaymentStatus { get; set; } = "Pending"; // Pending, Completed, Failed
 }

@@ -10,34 +10,17 @@ public class Claim
 
     [Required]
     public int UserId { get; set; }
+    public User User { get; set; }
 
     [Required]
     public int ContractId { get; set; }
+    public InsuranceContract Contract { get; set; }
 
     [Required]
-    [Column(TypeName = "decimal(10,2)")]
     public decimal ClaimAmount { get; set; }
 
-    public string Description { get; set; }
-
     [Required]
-    public ClaimStatus Status { get; set; }
+    public string ClaimStatus { get; set; } = "Pending"; // Pending, Approved, Rejected
 
-    [Required]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    // Thiết lập quan hệ với User và InsuranceContract
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; }
-
-    [ForeignKey("ContractId")]
-    public virtual InsuranceContract Contract { get; set; }
-}
-
-// Enum cho trạng thái yêu cầu bồi thường
-public enum ClaimStatus
-{
-    Pending,
-    Approved,
-    Rejected
+    public DateTime ClaimDate { get; set; } = DateTime.UtcNow;
 }

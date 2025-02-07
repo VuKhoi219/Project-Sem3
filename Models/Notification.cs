@@ -10,17 +10,13 @@ public class Notification
 
     [Required]
     public int UserId { get; set; }
+    public User User { get; set; }
 
     [Required]
     public string Message { get; set; }
 
     [Required]
-    public bool IsRead { get; set; } = false;
+    public string Status { get; set; } = "Unread"; // Unread, Read
 
-    [Required]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    // Thiết lập quan hệ với User
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

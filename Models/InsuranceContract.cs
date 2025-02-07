@@ -11,41 +11,24 @@ public class InsuranceContract
 
     [Required]
     public int UserId { get; set; }
+    public User User { get; set; }
 
     [Required]
     public int PlanId { get; set; }
+    public InsurancePlan Plan { get; set; }
 
     [Required]
-    [Column(TypeName = "date")]
     public DateTime StartDate { get; set; }
 
     [Required]
-    [Column(TypeName = "date")]
     public DateTime EndDate { get; set; }
 
     [Required]
-    public ContractStatus Status { get; set; }
+    public string Status { get; set; } = "Active"; // Active, Expired, Cancelled
 
-    [Required]
-    [Column(TypeName = "decimal(10,2)")]
-    public decimal Premium { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    [Required]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    // Thiết lập quan hệ với User và Plan
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; }
-
-    [ForeignKey("PlanId")]
-    public virtual InsurancePlan Plan { get; set; }
-}
-
-// Enum cho trạng thái hợp đồng bảo hiểm
-public enum ContractStatus
-{
-    Active,
-    Expired,
-    Pending,
-    Cancelled
+    // Quan hệ
+    public ICollection<Payment> Payments { get; set; }
+    public ICollection<Claim> Claims { get; set; }
 }
