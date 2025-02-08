@@ -91,7 +91,6 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
             migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
@@ -113,7 +112,6 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
             migrationBuilder.CreateTable(
                 name: "UserRoles",
                 columns: table => new
@@ -138,7 +136,6 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
             migrationBuilder.CreateTable(
                 name: "Claims",
                 columns: table => new
@@ -167,7 +164,6 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
             migrationBuilder.CreateTable(
                 name: "Payments",
                 columns: table => new
