@@ -63,6 +63,28 @@ namespace Project_Sem3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Policies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlanId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Policies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Policies_InsurancePlans_PlanId",
+                        column: x => x.PlanId,
+                        principalTable: "InsurancePlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InsuranceContracts",
                 columns: table => new
                 {
@@ -91,6 +113,7 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
@@ -112,6 +135,7 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "UserRoles",
                 columns: table => new
@@ -136,6 +160,7 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "Claims",
                 columns: table => new
@@ -164,6 +189,7 @@ namespace Project_Sem3.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
             migrationBuilder.CreateTable(
                 name: "Payments",
                 columns: table => new
@@ -229,6 +255,11 @@ namespace Project_Sem3.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Policies_PlanId",
+                table: "Policies",
+                column: "PlanId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
@@ -245,6 +276,9 @@ namespace Project_Sem3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Payments");
+
+            migrationBuilder.DropTable(
+                name: "Policies");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

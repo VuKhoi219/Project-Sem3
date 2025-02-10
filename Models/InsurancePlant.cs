@@ -23,4 +23,5 @@ public class InsurancePlan
 
     // Quan hệ
     public ICollection<InsuranceContract> InsuranceContracts { get; set; }
+    public List<Policy> Policies { get; set; } 
 }

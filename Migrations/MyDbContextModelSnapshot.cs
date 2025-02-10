@@ -184,6 +184,35 @@ namespace Project_Sem3.Migrations
                     b.ToTable("Payments");
                 });
 
+            modelBuilder.Entity("Project_Sem3.Models.Policy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanId");
+
+                    b.ToTable("Policies");
+                });
+
             modelBuilder.Entity("Project_Sem3.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -338,6 +367,17 @@ namespace Project_Sem3.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Project_Sem3.Models.Policy", b =>
+                {
+                    b.HasOne("Project_Sem3.Models.InsurancePlan", "Plan")
+                        .WithMany("Policies")
+                        .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plan");
+                });
+
             modelBuilder.Entity("Project_Sem3.Models.UserRole", b =>
                 {
                     b.HasOne("Project_Sem3.Models.Role", "Role")
@@ -367,6 +407,8 @@ namespace Project_Sem3.Migrations
             modelBuilder.Entity("Project_Sem3.Models.InsurancePlan", b =>
                 {
                     b.Navigation("InsuranceContracts");
+
+                    b.Navigation("Policies");
                 });
 
             modelBuilder.Entity("Project_Sem3.Models.Role", b =>
