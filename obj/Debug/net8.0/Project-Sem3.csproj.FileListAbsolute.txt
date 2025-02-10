@@ -346,3 +346,5 @@ C:\Users\nguye\Desktop\ProjectSem3\Project-Sem3\obj\Debug\net8.0\refint\Project-
 C:\Users\nguye\Desktop\ProjectSem3\Project-Sem3\obj\Debug\net8.0\Project-Sem3.pdb
 C:\Users\nguye\Desktop\ProjectSem3\Project-Sem3\obj\Debug\net8.0\Project-Sem3.genruntimeconfig.cache
 C:\Users\nguye\Desktop\ProjectSem3\Project-Sem3\obj\Debug\net8.0\ref\Project-Sem3.dll
+E:\Project-Sem3\bin\Debug\net8.0\DotNetEnv.dll
+E:\Project-Sem3\bin\Debug\net8.0\Sprache.dll

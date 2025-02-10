@@ -15,6 +15,7 @@ public class MyDbContext : DbContext
     public DbSet<Payment> Payments { get; set; }
     public DbSet<Claim> Claims { get; set; }
     public DbSet<Notification> Notifications { get; set; }
+    public DbSet<Policy> Policies { get; set; } 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,5 +42,10 @@ public class MyDbContext : DbContext
             .WithMany(u => u.Payments)
             .HasForeignKey(p => p.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Policy>()
+            .HasOne(p => p.Plan)
+            .WithMany(i => i.Policies)
+            .HasForeignKey(p => p.PlanId)
+            .OnDelete(DeleteBehavior.Cascade); 
     }
 }
