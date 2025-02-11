@@ -15,7 +15,11 @@ public class Payment
     [Required]
     public int ContractId { get; set; }
     public InsuranceContract Contract { get; set; }
-
+    
+    
+    [Required]
+    public string UrlImage { get; set; }
+    
     [Required]
     public decimal Amount { get; set; }
 
