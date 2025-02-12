@@ -16,7 +16,6 @@ public class Payment
     public int ContractId { get; set; }
     public InsuranceContract Contract { get; set; }
     
-    
     [Required]
     public string UrlImage { get; set; }
     

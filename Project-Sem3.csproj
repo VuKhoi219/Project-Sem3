@@ -22,11 +22,22 @@
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
       <PackageReference Include="System.Net.Mail" Version="1.0.0-rtm-00002" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Repository\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="TestProject1\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="TestProject1\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="TestProject1\obj\TestProject1.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="TestProject1\bin\Debug\net8.0\TestProject1.deps.json" />
+      <_ContentIncludedByDefault Remove="TestProject1\bin\Debug\net8.0\TestProject1.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="TestProject1\obj\Debug\net8.0\TestProject1.sourcelink.json" />
     </ItemGroup>
 
 </Project>
