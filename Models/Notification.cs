@@ -5,18 +5,14 @@ namespace Project_Sem3.Models;
 
 public class Notification
 {
-    [Key]
     public int Id { get; set; }
-
-    [Required]
     public int UserId { get; set; }
-    public User User { get; set; }
-
-    [Required]
     public string Message { get; set; }
-
-    [Required]
-    public string Status { get; set; } = "Unread"; // Unread, Read
-
+    public bool IsRead { get; set; } = false;
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    public User User { get; set; }
 }

@@ -6,29 +6,22 @@ namespace Project_Sem3.Models;
 
 public class InsuranceContract
 {
-    [Key]
     public int Id { get; set; }
-
-    [Required]
     public int UserId { get; set; }
-    public User User { get; set; }
-
-    [Required]
     public int PlanId { get; set; }
-    public InsurancePlan Plan { get; set; }
-
-    [Required]
     public DateTime StartDate { get; set; }
-
-    [Required]
     public DateTime EndDate { get; set; }
-
-    [Required]
-    public string Status { get; set; } = "Active"; // Active, Expired, Cancelled
-
+    public string Status { get; set; } // Active, Expired, Cancelled
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-    // Quan hệ
+    public User User { get; set; }
+    public InsurancePlan Plan { get; set; }
+    // Mối quan hệ với Payments
     public ICollection<Payment> Payments { get; set; }
+
+    // Mối quan hệ với Claims
     public ICollection<Claim> Claims { get; set; }
 }
