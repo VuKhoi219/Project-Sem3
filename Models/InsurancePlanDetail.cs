@@ -1,18 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace Project_Sem3.Models;
 
-public class InsuranceContract
+public class InsurancePlanDetail
 {
     [Key]
     public int Id { get; set; }
-
-    [Required]
-    public int UserId { get; set; }
-    [ForeignKey("UserId")]
-    public User User { get; set; }
 
     [Required]
     public int PlanId { get; set; }
@@ -21,13 +15,24 @@ public class InsuranceContract
     public InsurancePlan InsurancePlan { get; set; }
 
     [Required]
-    public DateTime StartDate { get; set; }
+    public decimal Premium { get; set; }
 
     [Required]
-    public DateTime EndDate { get; set; }
+    public decimal CoverageAmount { get; set; }
 
     [Required]
-    public ContractStatus Status { get; set; }
+    public decimal Deductible { get; set; }
+
+    [Required]
+    public int Duration { get; set; }
+
+    [Required, MaxLength(50)]
+    public string AgeGroup { get; set; }
+
+    public decimal RiskFactor { get; set; }
+
+    [Required, MaxLength(100)]
+    public string Region { get; set; }
 
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
@@ -42,12 +47,4 @@ public class InsuranceContract
 
     [ForeignKey("UpdatedBy")]
     public User UpdatedUser { get; set; }
-}
-
-public enum ContractStatus
-{
-    Pending,
-    Active,
-    Expired,
-    Cancelled
 }

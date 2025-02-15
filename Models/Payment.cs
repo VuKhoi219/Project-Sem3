@@ -10,20 +10,41 @@ public class Payment
 
     [Required]
     public int UserId { get; set; }
+
+    [ForeignKey("UserId")]
     public User User { get; set; }
 
     [Required]
     public int ContractId { get; set; }
-    public InsuranceContract Contract { get; set; }
-    
-    [Required]
-    public string UrlImage { get; set; }
-    
+
+    [ForeignKey("ContractId")]
+    public InsuranceContract InsuranceContract { get; set; }
+
     [Required]
     public decimal Amount { get; set; }
 
-    public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
+    public DateTime? PaymentDate { get; set; }
 
     [Required]
-    public string PaymentStatus { get; set; } = "Pending"; // Pending, Completed, Failed
+    public PaymentStatus Status { get; set; }
+
+    public string ImageUrl { get; set; }
+    [Required]
+    public int CreatedBy { get; set; }
+
+    [ForeignKey("CreatedBy")]
+    public User? CreatedUser { get; set; }
+
+    [Required]
+    public int UpdatedBy { get; set; }
+
+    [ForeignKey("UpdatedBy")]
+    public User UpdatedUser { get; set; }
+}
+
+public enum PaymentStatus
+{
+    Pending,
+    Completed,
+    Failed
 }
