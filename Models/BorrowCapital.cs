@@ -1,36 +1,39 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace Project_Sem3.Models;
 
-public class InsuranceContract
+public class BorrowCapital
 {
     [Key]
     public int Id { get; set; }
 
     [Required]
     public int UserId { get; set; }
+
     [ForeignKey("UserId")]
     public User User { get; set; }
 
     [Required]
-    public int PlanId { get; set; }
+    public decimal LoanAmount { get; set; }
 
-    [ForeignKey("PlanId")]
-    public InsurancePlan InsurancePlan { get; set; }
-
-    [Required]
-    public DateTime StartDate { get; set; }
+    [Required, MaxLength(10)]
+    public string Currency { get; set; } = "VND";
 
     [Required]
-    public DateTime EndDate { get; set; }
+    public decimal InterestRate { get; set; }
+
+    public string LoanPurpose { get; set; }
+
+    public DateTime? LoanDate { get; set; }
 
     [Required]
-    public ContractStatus Status { get; set; }
+    public decimal RepaymentAmount { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
+    [Required]
+    public DateTime DueDate { get; set; }
+
+    public PaymentSchedule PaymentSchedule { get; set; }
     [Required]
     public int CreatedBy { get; set; }
 
@@ -44,10 +47,9 @@ public class InsuranceContract
     public User UpdatedUser { get; set; }
 }
 
-public enum ContractStatus
+public enum PaymentSchedule
 {
-    Pending,
-    Active,
-    Expired,
-    Cancelled
+    Monthly,
+    Quarterly,
+    Yearly
 }

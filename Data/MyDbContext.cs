@@ -9,60 +9,96 @@ public class MyDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<InsurancePlan> InsurancePlans { get; set; }
-    public DbSet<Policy> Policies { get; set; }
+    public DbSet<InsurancePlanDetail> InsurancePlanDetails { get; set; }
     public DbSet<InsuranceContract> InsuranceContracts { get; set; }
     public DbSet<Payment> Payments { get; set; }
-    public DbSet<Claim> Claims { get; set; }
+    public DbSet<BorrowCapital> BorrowCapitals { get; set; }
     public DbSet<Notification> Notifications { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Thiết lập quan hệ nhiều - nhiều giữa User và Role
-        modelBuilder.Entity<UserRole>()
-            .HasOne(ur => ur.User)
-            .WithMany(u => u.UserRoles)
-            .HasForeignKey(ur => ur.UserId);
+        base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<UserRole>()
-            .HasOne(ur => ur.Role)
-            .WithMany(r => r.UserRoles)
-            .HasForeignKey(ur => ur.RoleId);
+        // Thiết lập quan hệ cho User - Role (1:N)
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Role)
+            .WithMany(r => r.Users)
+            .HasForeignKey(u => u.RoleId);
 
-        // Các quan hệ khác
+        // Thiết lập quan hệ CreatedBy & UpdatedBy cho các bảng
+        modelBuilder.Entity<InsurancePlan>()
+            .HasOne(p => p.CreatedUser)
+            .WithMany()
+            .HasForeignKey(p => p.CreatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<InsurancePlan>()
+            .HasOne(p => p.UpdatedUser)
+            .WithMany()
+            .HasForeignKey(p => p.UpdatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<InsurancePlanDetail>()
+            .HasOne(d => d.CreatedUser)
+            .WithMany()
+            .HasForeignKey(d => d.CreatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<InsurancePlanDetail>()
+            .HasOne(d => d.UpdatedUser)
+            .WithMany()
+            .HasForeignKey(d => d.UpdatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.Entity<InsuranceContract>()
-            .HasOne(ic => ic.User)
-            .WithMany(u => u.InsuranceContracts)
-            .HasForeignKey(ic => ic.UserId);
+            .HasOne(c => c.CreatedUser)
+            .WithMany()
+            .HasForeignKey(c => c.CreatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<InsuranceContract>()
-            .HasOne(ic => ic.Plan)
-            .WithMany(p => p.InsuranceContracts)
-            .HasForeignKey(ic => ic.PlanId);
-
-        // Mối quan hệ giữa User và Payments
+            .HasOne(c => c.UpdatedUser)
+            .WithMany()
+            .HasForeignKey(c => c.UpdatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<Payment>()
-            .HasOne(p => p.User)
-            .WithMany(u => u.Payments)
-            .HasForeignKey(p => p.UserId)
-            .OnDelete(DeleteBehavior.NoAction);
-
+            .HasOne(p => p.User)   // Payment có một User
+            .WithMany()            // Không cần khai báo nhiều Payment trong User
+            .HasForeignKey(p => p.UserId)  
+            .OnDelete(DeleteBehavior.Restrict); // Tránh "multiple cascade paths"
         modelBuilder.Entity<Payment>()
-            .HasOne(p => p.Contract)
-            .WithMany(ic => ic.Payments)
-            .HasForeignKey(p => p.ContractId);
-
-        // Mối quan hệ giữa User và Claims
-        modelBuilder.Entity<Claim>()
-            .HasOne(c => c.User)
-            .WithMany(u => u.Claims)
-            .HasForeignKey(c => c.UserId)
+            .HasOne(p => p.CreatedUser)
+            .WithMany()
+            .HasForeignKey(p => p.CreatedBy)
+            .OnDelete(DeleteBehavior.NoAction); 
+        modelBuilder.Entity<Payment>()
+            .HasOne(p => p.UpdatedUser)
+            .WithMany()
+            .HasForeignKey(p => p.UpdatedBy)
             .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<BorrowCapital>()
+            .HasOne(b => b.CreatedUser)
+            .WithMany()
+            .HasForeignKey(b => b.CreatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<Claim>()
-            .HasOne(c => c.Contract)
-            .WithMany(ic => ic.Claims)
-            .HasForeignKey(c => c.ContractId);
+        modelBuilder.Entity<BorrowCapital>()
+            .HasOne(b => b.UpdatedUser)
+            .WithMany()
+            .HasForeignKey(b => b.UpdatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Notification>()
+            .HasOne(n => n.CreatedUser)
+            .WithMany()
+            .HasForeignKey(n => n.CreatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Notification>()
+            .HasOne(n => n.UpdatedUser)
+            .WithMany()
+            .HasForeignKey(n => n.UpdatedBy)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

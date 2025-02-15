@@ -5,16 +5,46 @@ namespace Project_Sem3.Models;
 
 public class InsurancePlan
 {
+    [Key]
     public int Id { get; set; }
-    public string Name { get; set; }
-    public string Type { get; set; } // Life, Medical, Motor, Home
-    public string Description { get; set; }
-    public decimal CoverageAmount { get; set; } // Số tiền bảo hiểm
-    public int Premium  { get; set; } // Thời gian bảo hiểm (tháng/năm)
-    public int? CreatedBy { get; set; }
-    public int? UpdatedBy { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-    public ICollection<InsuranceContract> InsuranceContracts { get; set; }
 
+    [Required, MaxLength(255)]
+    public string Name { get; set; }
+
+    [Required]
+    public InsuranceType Type { get; set; }
+
+    [Required]
+    public InsuranceStatus Status { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+
+    [Required]
+    public int CreatedBy { get; set; }
+    
+    [ForeignKey("CreatedBy")]
+    public User CreatedUser { get; set; }
+
+    [Required]
+    public int UpdatedBy { get; set; }
+
+    [ForeignKey("UpdatedBy")]
+    public User UpdatedUser { get; set; }
+
+    public ICollection<InsurancePlanDetail> PlanDetails { get; set; }
+}
+
+public enum InsuranceType
+{
+    Life,
+    Health,
+    Auto,
+    Property
+}
+
+public enum InsuranceStatus
+{
+    Active,
+    Inactive
 }
