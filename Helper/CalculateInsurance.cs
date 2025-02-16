@@ -2,54 +2,66 @@ namespace Project_Sem3.Helper;
 
 public class CalculateInsurance
 {
+    public readonly CalculateCoefficient _CalculateCoefficient;
     // ví dụ  : 
     // decimal insuranceAmount = 500000000; // 500 triệu VND
     // decimal basicFee = 0.005m; // 0.5%
     // decimal ageCoefficient = 1.2m; // 40 tuổi
     // decimal healthCoefficient = 1.3m; // Tiểu đường
     // decimal insuranceCost = LifeInsurance(insuranceAmount, basicFee, ageCoefficient, healthCoefficient);
-    public decimal LifeInsurance(decimal insuranceAmount, decimal basicFee, decimal ageCoefficient,
-        decimal healthCoefficient)
+    public decimal LifeInsurance(decimal insuranceAmount, decimal basicFee,int age,
+        string healthStatus)
     {
-        if (insuranceAmount <= 0 || basicFee <= 0 || ageCoefficient <= 0 || healthCoefficient <= 0)
+        if (insuranceAmount <= 0 || basicFee <= 0 || age <= 0 || healthStatus.Length <= 0)
         {
             throw new ArgumentException("Các giá trị đầu vào phải lớn hơn 0.");
         }
+        decimal ageCoefficient = _CalculateCoefficient.ageCoefficient(age);
+        decimal healthCoefficient = _CalculateCoefficient.healthCoefficient(healthStatus);
         return insuranceAmount * basicFee * ageCoefficient * healthCoefficient;
     }
     
     // decimal healthInsuranceCost = HealthInsurance(100000000, 0.002m, 1.1m, 1.2m);
     // Console.WriteLine($"Phí bảo hiểm y tế: {healthInsuranceCost:N0} VND");
-    public decimal HealthInsurance(decimal insuranceAmount, decimal baseRate, decimal ageCoefficient, decimal healthCoefficient)
+    public decimal HealthInsurance(decimal insuranceAmount, decimal baseRate,int age,
+        string healthStatus)
     {
-        if (insuranceAmount <= 0 || baseRate <= 0 || ageCoefficient <= 0 || healthCoefficient <= 0)
+        if (insuranceAmount <= 0 || baseRate <= 0 || age <= 0 || healthStatus.Length <= 0)
         {
             throw new ArgumentException("Các giá trị đầu vào phải lớn hơn 0.");
         }
-
+        decimal ageCoefficient = _CalculateCoefficient.ageCoefficient(age);
+        decimal healthCoefficient = _CalculateCoefficient.healthCoefficient(healthStatus);
         return insuranceAmount * baseRate * ageCoefficient * healthCoefficient;
     }
     
     // decimal autoInsuranceCost = AutoInsurance(500000000, 0.01m, 1.05m, 1.2m);
     // Console.WriteLine($"Phí bảo hiểm xe cơ giới: {autoInsuranceCost:N0} VND");
-    public decimal AutoInsurance(decimal carValue, decimal baseRate , decimal carTypeCoefficient, decimal accidentCoefficient)
+    public decimal AutoInsurance(decimal carValue, decimal baseRate , string carBarand, int numberOfAccidents, int yearsWithoutAccident)
     {
-        if (carValue <= 0 || baseRate <= 0 || carTypeCoefficient <= 0 || accidentCoefficient <= 0)
+        if (carValue <= 0 || baseRate <= 0 || carBarand.Length <= 0 || numberOfAccidents < 0|| yearsWithoutAccident <0)
         {
             throw new ArgumentException("Các giá trị đầu vào phải lớn hơn 0.");
         }
+
+        decimal carTypeCoefficient = _CalculateCoefficient.carTypeCoefficient(carBarand);
+        decimal accidentCoefficient =
+            _CalculateCoefficient.accidentCoefficient(numberOfAccidents, yearsWithoutAccident);
 
         return carValue * baseRate * carTypeCoefficient * accidentCoefficient;
     }
     
     // decimal homeInsuranceCost = HomeInsurance(2000000000, 0.005m, 1.2m, 1.5m);
     // Console.WriteLine($"Phí bảo hiểm nhà ở: {homeInsuranceCost:N0} VND");
-    public decimal HomeInsurance(decimal homeValue, decimal baseRate, decimal locationCoefficient, decimal disasterRiskCoefficient)
+    public decimal HomeInsurance(decimal homeValue, decimal baseRate, string city)
     {
-        if (homeValue <= 0 || baseRate <= 0 || locationCoefficient <= 0 || disasterRiskCoefficient <= 0)
+        if (homeValue <= 0 || baseRate <= 0 || city.Length <= 0)
         {
             throw new ArgumentException("Các giá trị đầu vào phải lớn hơn 0.");
         }
+
+        decimal locationCoefficient = _CalculateCoefficient.locationCoefficient(city);
+        decimal disasterRiskCoefficient = _CalculateCoefficient.disasterRiskCoefficient(city);
 
         return homeValue * baseRate * locationCoefficient * disasterRiskCoefficient;
     }

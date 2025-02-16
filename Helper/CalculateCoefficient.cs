@@ -45,7 +45,6 @@ public class CalculateCoefficient
                 return 1.1m; // Nếu không xác định được trạng thái sức khỏe
         }
     }
-    
     // hệ số loại xe 
     public decimal carTypeCoefficient(string carBrand)
     {
@@ -122,17 +121,29 @@ public class CalculateCoefficient
         {
             return 1.5m;
         }
-        else
-        {
-            return 1.0m;
-        }
+        return 1.0m;
     }
     // hệ số thành phố có thiên tai 
     public decimal disasterRiskCoefficient(string city)
     {
-        return 0.0m;
+        List<string> disasterCity = new List<string>
+        {
+            "Lạng Sơn",
+            "Cao Bằng",
+            "Lào Cai",
+            "Yên Bái",
+            "Phú Thọ",
+            "Bắc Giang",
+            "Bắc Kạn",
+            "Thái Nguyên",
+            "Hoà Bình",
+            "Ninh Bình",
+            "Thanh Hoá"
+        };
+        if (disasterCity.Contains(city))
+        {
+            return 1.5m;
+        }
+        return 1.0m;
     }
-    
-    
-
 }
