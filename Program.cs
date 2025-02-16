@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Project_Sem3.Data;
 using Project_Sem3.Helper;
 
-// using Project_Sem3.Repository;
-// using Project_Sem3.Services;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>(options => // Program.cs
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); 
@@ -13,6 +11,8 @@ builder.Services.AddDbContext<MyDbContext>(options => // Program.cs
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<CalculateCoefficient>(); 
+builder.Services.AddScoped<CalculateInsuranceServices>();
 
 var app = builder.Build();
 

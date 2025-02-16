@@ -1,8 +1,13 @@
 namespace Project_Sem3.Helper;
 
-public class CalculateInsurance
+public class CalculateInsuranceServices
 {
     public readonly CalculateCoefficient _CalculateCoefficient;
+
+    public CalculateInsuranceServices(CalculateCoefficient calculateCoefficient)
+    {
+        _CalculateCoefficient = calculateCoefficient;
+    }
     // ví dụ  : 
     // decimal insuranceAmount = 500000000; // 500 triệu VND
     // decimal basicFee = 0.005m; // 0.5%
