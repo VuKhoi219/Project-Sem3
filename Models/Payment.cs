@@ -11,35 +11,36 @@ public class Payment
     [Required]
     public int UserId { get; set; }
 
-    [ForeignKey("UserId")]
-    public User User { get; set; }
-
     [Required]
     public int ContractId { get; set; }
-
-    [ForeignKey("ContractId")]
-    public InsuranceContract InsuranceContract { get; set; }
 
     [Required]
     public decimal Amount { get; set; }
 
-    public DateTime? PaymentDate { get; set; }
+    public DateTime PaymentDate { get; set; }
 
     [Required]
     public PaymentStatus Status { get; set; }
 
+    [MaxLength(255)]
     public string ImageUrl { get; set; }
-    [Required]
-    public int CreatedBy { get; set; }
 
-    [ForeignKey("CreatedBy")]
-    public User? CreatedUser { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-    [Required]
-    public int UpdatedBy { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
-    [ForeignKey("UpdatedBy")]
-    public User UpdatedUser { get; set; }
+    public DateTime? DeleteAt { get; set; }
+
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    // Navigation Properties
+    public virtual User User { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+    
+    public virtual InsuranceContract Contract { get; set; }
 }
 
 public enum PaymentStatus

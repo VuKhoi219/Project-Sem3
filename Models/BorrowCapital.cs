@@ -11,21 +11,19 @@ public class BorrowCapital
     [Required]
     public int UserId { get; set; }
 
-    [ForeignKey("UserId")]
-    public User User { get; set; }
-
     [Required]
     public decimal LoanAmount { get; set; }
 
-    [Required, MaxLength(10)]
-    public string Currency { get; set; } = "VND";
+    [MaxLength(10)]
+    public string Currency { get; set; } = "VND";  // Default value is 'VND'
 
     [Required]
     public decimal InterestRate { get; set; }
 
+    [MaxLength(255)]
     public string LoanPurpose { get; set; }
 
-    public DateTime? LoanDate { get; set; }
+    public DateTime LoanDate { get; set; }
 
     [Required]
     public decimal RepaymentAmount { get; set; }
@@ -33,18 +31,32 @@ public class BorrowCapital
     [Required]
     public DateTime DueDate { get; set; }
 
+    [Required]
     public PaymentSchedule PaymentSchedule { get; set; }
+
+    [MaxLength(100)]
+    public string BankTransactionId { get; set; }
+
+    public string BankStatus { get; set; }
+
     [Required]
-    public int CreatedBy { get; set; }
+    public string Status { get; set; }
 
-    [ForeignKey("CreatedBy")]
-    public User CreatedUser { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-    [Required]
-    public int UpdatedBy { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
-    [ForeignKey("UpdatedBy")]
-    public User UpdatedUser { get; set; }
+    public DateTime? DeleteAt { get; set; }
+
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    
+    public virtual User User { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+
 }
 
 public enum PaymentSchedule

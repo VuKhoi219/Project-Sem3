@@ -11,24 +11,24 @@ public class Notification
     [Required]
     public int UserId { get; set; }
 
-    [ForeignKey("UserId")]
-    public User User { get; set; }
-
     [Required]
     public string Message { get; set; }
 
     public bool IsRead { get; set; } = false;
 
     public DateTime? CreatedAt { get; set; }
-    [Required]
-    public int CreatedBy { get; set; }
 
-    [ForeignKey("CreatedBy")]
-    public User CreatedUser { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
-    [Required]
-    public int UpdatedBy { get; set; }
+    public DateTime? DeleteAt { get; set; }
 
-    [ForeignKey("UpdatedBy")]
-    public User UpdatedUser { get; set; }
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    
+    public virtual User User { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+
 }
