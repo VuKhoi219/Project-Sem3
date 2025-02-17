@@ -22,7 +22,7 @@ packages/
 appsettings.Development.json
 appsettings.Production.json
 appsettings.Local.json
-
+appsettings.json
 # Các file DLL, EXE
 *.dll
 *.exe
