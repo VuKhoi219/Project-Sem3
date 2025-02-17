@@ -28,9 +28,11 @@ public class InsuranceContract
 
     [Required]
     public ContractStatus Status { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
+    
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
+    
     [Required]
     public int CreatedBy { get; set; }
 
@@ -42,6 +44,11 @@ public class InsuranceContract
 
     [ForeignKey("UpdatedBy")]
     public User UpdatedUser { get; set; }
+    
+    [Required]
+    public int DeletedBy { get; set; }
+    [ForeignKey("DeletedBy")]
+    public User DeletedUser { get; set; }
 }
 
 public enum ContractStatus

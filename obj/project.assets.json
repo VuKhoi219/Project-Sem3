@@ -10086,31 +10086,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL G15\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Project-Sem3\\Project-Sem3.csproj",
+      "projectUniqueName": "D:\\Aptech\\prj-asm3\\Project-Sem3.csproj",
       "projectName": "Project-Sem3",
-      "projectPath": "E:\\Project-Sem3\\Project-Sem3.csproj",
-      "packagesPath": "C:\\Users\\DELL G15\\.nuget\\packages\\",
-      "outputPath": "E:\\Project-Sem3\\obj\\",
+      "projectPath": "D:\\Aptech\\prj-asm3\\Project-Sem3.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "D:\\Aptech\\prj-asm3\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
+      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
-        "C:\\Users\\DELL G15\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10123,6 +10117,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -10193,7 +10192,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -10202,7 +10201,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "System.Net.Mail 1.0.0-rtm-00002 depends on System.Data.Common (>= 4.0.1) but System.Data.Common 4.0.1 was not found. An approximate best match of System.Data.Common 4.1.0 was resolved.",
+      "message": "System.Net.Mail 1.0.0-rtm-00002 depends on System.Data.Common (>= 4.0.1) but System.Data.Common 4.0.1 was not found. System.Data.Common 4.1.0 was resolved instead.",
       "libraryId": "System.Data.Common",
       "targetGraphs": [
         "net8.0"

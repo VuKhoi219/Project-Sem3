@@ -8,42 +8,48 @@ public class InsurancePlan
     [Key]
     public int Id { get; set; }
 
-    [Required, MaxLength(255)]
+    [Required]
+    [MaxLength(255)]
     public string Name { get; set; }
 
-    [Required]
-    public InsuranceType Type { get; set; }
+    [MaxLength(225)]
+    public string Destination { get; set; }
 
     [Required]
-    public InsuranceStatus Status { get; set; }
+    public PlanType Type { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+    [Required]
+    public PlanStatus Status { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
 
     [Required]
     public int CreatedBy { get; set; }
-    
     [ForeignKey("CreatedBy")]
     public User CreatedUser { get; set; }
 
     [Required]
     public int UpdatedBy { get; set; }
-
     [ForeignKey("UpdatedBy")]
     public User UpdatedUser { get; set; }
 
-    public ICollection<InsurancePlanDetail> PlanDetails { get; set; }
+    [Required]
+    public int DeletedBy { get; set; }
+    [ForeignKey("DeletedBy")]
+    public User DeletedUser { get; set; }
 }
 
-public enum InsuranceType
+public enum PlanType
 {
     Life,
     Health,
-    Auto,
+    Vehicle,
     Property
 }
 
-public enum InsuranceStatus
+public enum PlanStatus
 {
     Active,
     Inactive
