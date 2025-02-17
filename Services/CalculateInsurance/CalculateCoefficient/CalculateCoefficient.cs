@@ -146,4 +146,17 @@ public class CalculateCoefficient
         }
         return 1.0m;
     }
+    
+    // tính hệ số hợp đồng ( thời hạn hợp đồng )
+    public decimal contractCoefficient(int contractDuration)
+    {
+        if (contractDuration >= 10)
+        {
+            return 0.9m * contractDuration;
+        }else if (contractDuration >= 5 && contractDuration < 10)
+        {
+            return 0.95m * contractDuration;
+        }
+        return 1.0m * contractDuration;
+    }
 }

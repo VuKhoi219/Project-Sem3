@@ -19,7 +19,7 @@ public class CalculateInsuranceController : Controller
         {
             try
             {
-                var result = _calculateInsuranceServices.LifeInsurance(request.InsuranceAmount, 0.05m, request.Age, request.HealthStatus);
+                var result = _calculateInsuranceServices.LifeInsurance(request.InsuranceAmount, 0.05m, request.Age, request.HealthStatus , request.ContractDuration);
                 return Ok(new { TotalCost = result });
             }
             catch (Exception ex)
@@ -33,7 +33,7 @@ public class CalculateInsuranceController : Controller
         {
             try
             {
-                var result = _calculateInsuranceServices.HealthInsurance(request.InsuranceAmount, 0.05m, request.Age, request.HealthStatus);
+                var result = _calculateInsuranceServices.HealthInsurance(request.InsuranceAmount, 0.05m, request.Age, request.HealthStatus, request.ContractDuration);
                 return Ok(new { TotalCost = result });
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ public class CalculateInsuranceController : Controller
         {
             try
             {
-                var result = _calculateInsuranceServices.AutoInsurance(request.CarValue,0.05m, request.CarBrand, request.NumberOfAccidents, request.YearsWithoutAccident);
+                var result = _calculateInsuranceServices.AutoInsurance(request.CarValue,0.05m, request.CarBrand, request.NumberOfAccidents, request.YearsWithoutAccident, request.ContractDuration);
                 return Ok(new { TotalCost = result });
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ public class CalculateInsuranceController : Controller
         {
             try
             {
-                var result = _calculateInsuranceServices.HomeInsurance(request.HomeValue, 0.05m, request.City);
+                var result = _calculateInsuranceServices.HomeInsurance(request.HomeValue, 0.05m, request.City , request.ContractDuration);
                 return Ok(new { TotalCost = result });
             }
             catch (Exception ex)

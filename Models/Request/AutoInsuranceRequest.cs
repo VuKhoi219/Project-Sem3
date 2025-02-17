@@ -6,4 +6,6 @@ public class AutoInsuranceRequest
     public string CarBrand { get; set; }
     public int NumberOfAccidents { get; set; }
     public int YearsWithoutAccident { get; set; }
+    public int ContractDuration { get; set; }
+
 }
