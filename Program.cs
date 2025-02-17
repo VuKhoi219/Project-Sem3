@@ -6,12 +6,12 @@ using Project_Sem3.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>(options => // Program.cs
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<CalculateCoefficient>(); 
+builder.Services.AddScoped<CalculateCoefficient>();
 builder.Services.AddScoped<CalculateInsuranceServices>();
 
 var app = builder.Build();
@@ -32,8 +32,13 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "defaultWithArea",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
+
+// app.MapControllerRoute(
+//     name: "defaultWithoutArea",
+//     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 
