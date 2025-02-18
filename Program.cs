@@ -1,7 +1,9 @@
+using System.Collections.Immutable;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using Project_Sem3.Data;
-// using Project_Sem3.Repository;
-// using Project_Sem3.Services;
+using Project_Sem3.Helper;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>(options => // Program.cs
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); 
@@ -9,10 +11,12 @@ builder.Services.AddDbContext<MyDbContext>(options => // Program.cs
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<CalculateCoefficient>(); 
+builder.Services.AddScoped<CalculateInsuranceServices>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipelin
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

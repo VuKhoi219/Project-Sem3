@@ -8,19 +8,47 @@ public class InsurancePlan
     [Key]
     public int Id { get; set; }
 
-    [Required, MaxLength(255)]
+    [MaxLength(255)]
     public string Name { get; set; }
 
-    public string Description { get; set; }
+    [MaxLength(225)]
+    public string Destination { get; set; }
 
-    [Required]
-    public decimal Premium { get; set; } // Phí bảo hiểm hàng tháng
+    public InsuranceType Type { get; set; }
 
-    [Required]
-    public decimal CoverageAmount { get; set; } // Số tiền bảo hiểm chi trả
+    public InsuranceStatus Status { get; set; }
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? CreatedAt { get; set; }
 
-    // Quan hệ
-    public ICollection<InsuranceContract> InsuranceContracts { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? DeleteAt { get; set; }
+
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+
+    // Relationships
+    public virtual ICollection<InsuranceContract> InsuranceContracts { get; set; }
+    public virtual ICollection<InsuranceVehicleDetail> VehicleDetails { get; set; }
+    public virtual ICollection<InsuranceLifeDetail> LifeDetails { get; set; }
+    public virtual ICollection<InsurancePropertyDetail> PropertyDetails { get; set; }
+    public virtual ICollection<InsuranceHealthDetail> HealthDetails { get; set; }
+}
+
+public enum InsuranceType
+{
+    Life,
+    Health,
+    Auto,
+    Property
+}
+
+public enum InsuranceStatus
+{
+    Active,
+    Inactive
 }

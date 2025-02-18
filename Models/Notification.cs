@@ -10,13 +10,25 @@ public class Notification
 
     [Required]
     public int UserId { get; set; }
-    public User User { get; set; }
 
     [Required]
     public string Message { get; set; }
 
-    [Required]
-    public string Status { get; set; } = "Unread"; // Unread, Read
+    public bool IsRead { get; set; } = false;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? DeleteAt { get; set; }
+
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    
+    public virtual User User { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+
 }
