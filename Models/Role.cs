@@ -3,18 +3,28 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Project_Sem3.Models;
 
-public class Role 
+public class Role
 {
     [Key]
     public int Id { get; set; }
 
-    [Required, MaxLength(50)]
+    [Required]
+    [MaxLength(50)]
     public string Name { get; set; }
 
-    public string Description { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; }
 
-    // Quan hệ
-    public ICollection<UserRole> UserRoles { get; set; }
+    public DateTime? DeleteAt { get; set; }
+
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+
+    // Relationship
+    public virtual ICollection<User> Users { get; set; }
 }

@@ -10,17 +10,42 @@ public class Payment
 
     [Required]
     public int UserId { get; set; }
-    public User User { get; set; }
 
     [Required]
     public int ContractId { get; set; }
-    public InsuranceContract Contract { get; set; }
 
     [Required]
     public decimal Amount { get; set; }
 
-    public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
+    public DateTime PaymentDate { get; set; }
 
     [Required]
-    public string PaymentStatus { get; set; } = "Pending"; // Pending, Completed, Failed
+    public PaymentStatus Status { get; set; }
+
+    [MaxLength(255)]
+    public string ImageUrl { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? DeleteAt { get; set; }
+
+    public int? CreatedBy { get; set; }
+    public int? UpdatedBy { get; set; }
+    public int? DeleteBy { get; set; }
+    // Navigation Properties
+    public virtual User User { get; set; }
+    public virtual User Creator { get; set; }
+    public virtual User Updater { get; set; }
+    public virtual User Deleter { get; set; }
+    
+    public virtual InsuranceContract Contract { get; set; }
+}
+
+public enum PaymentStatus
+{
+    Pending,
+    Completed,
+    Failed
 }

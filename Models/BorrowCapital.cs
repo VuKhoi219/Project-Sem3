@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace Project_Sem3.Models;
 
-public class InsuranceContract
+public class BorrowCapital
 {
     [Key]
     public int Id { get; set; }
@@ -13,16 +12,35 @@ public class InsuranceContract
     public int UserId { get; set; }
 
     [Required]
-    public int PlanId { get; set; }
+    public decimal LoanAmount { get; set; }
+
+    [MaxLength(10)]
+    public string Currency { get; set; } = "VND";  // Default value is 'VND'
 
     [Required]
-    public DateTime StartDate { get; set; }
+    public decimal InterestRate { get; set; }
+
+    [MaxLength(255)]
+    public string LoanPurpose { get; set; }
+
+    public DateTime LoanDate { get; set; }
 
     [Required]
-    public DateTime EndDate { get; set; }
+    public decimal RepaymentAmount { get; set; }
 
     [Required]
-    public ContractStatus Status { get; set; }
+    public DateTime DueDate { get; set; }
+
+    [Required]
+    public PaymentSchedule PaymentSchedule { get; set; }
+
+    [MaxLength(100)]
+    public string BankTransactionId { get; set; }
+
+    public string BankStatus { get; set; }
+
+    [Required]
+    public string Status { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 
@@ -34,20 +52,16 @@ public class InsuranceContract
     public int? UpdatedBy { get; set; }
     public int? DeleteBy { get; set; }
     
-    // Navigation Properties
     public virtual User User { get; set; }
     public virtual User Creator { get; set; }
     public virtual User Updater { get; set; }
     public virtual User Deleter { get; set; }
-    public virtual InsurancePlan Plan { get; set; }
 
-    // Relationship
-    public virtual ICollection<Payment> Payments { get; set; }
 }
-public enum ContractStatus
+
+public enum PaymentSchedule
 {
-    Pending,
-    Active,
-    Expired,
-    Cancelled
+    Monthly,
+    Quarterly,
+    Yearly
 }
