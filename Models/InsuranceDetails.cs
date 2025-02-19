@@ -3,27 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_Sem3.Models;
 
-public class Payment
+public abstract class InsuranceDetails
 {
   [Key]
   public int Id { get; set; }
 
   [Required]
-  public int UserId { get; set; }
+  public int PlanId { get; set; }
 
   [Required]
-  public int ContractId { get; set; }
+  public decimal Premium { get; set; }
 
   [Required]
-  public decimal Amount { get; set; }
-
-  public DateTime PaymentDate { get; set; }
+  public decimal CoverageAmount { get; set; }
 
   [Required]
-  public PaymentStatus Status { get; set; }
-
-  [MaxLength(255)]
-  public string ImageUrl { get; set; }
+  public decimal Deductible { get; set; }
 
   public DateTime? CreatedAt { get; set; }
 
@@ -34,18 +29,9 @@ public class Payment
   public int? CreatedBy { get; set; }
   public int? UpdatedBy { get; set; }
   public int? DeleteBy { get; set; }
-  // Navigation Properties
-  public virtual User User { get; set; }
+
+  public virtual InsurancePlan Plan { get; set; }
   public virtual User Creator { get; set; }
   public virtual User Updater { get; set; }
   public virtual User Deleter { get; set; }
-
-  public virtual InsuranceContract Contract { get; set; }
-}
-
-public enum PaymentStatus
-{
-  Pending,
-  Completed,
-  Failed
 }

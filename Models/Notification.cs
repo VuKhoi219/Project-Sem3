@@ -5,30 +5,30 @@ namespace Project_Sem3.Models;
 
 public class Notification
 {
-    [Key]
-    public int Id { get; set; }
+  [Key]
+  public int Id { get; set; }
 
-    [Required]
-    public int UserId { get; set; }
+  [Required]
+  public int UserId { get; set; }
 
-    [ForeignKey("UserId")]
-    public User User { get; set; }
+  [Required]
+  public string Message { get; set; }
 
-    [Required]
-    public string Message { get; set; }
+  public bool IsRead { get; set; } = false;
 
-    public bool IsRead { get; set; } = false;
+  public DateTime? CreatedAt { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
-    [Required]
-    public int CreatedBy { get; set; }
+  public DateTime? UpdatedAt { get; set; }
 
-    [ForeignKey("CreatedBy")]
-    public User CreatedUser { get; set; }
+  public DateTime? DeleteAt { get; set; }
 
-    [Required]
-    public int UpdatedBy { get; set; }
+  public int? CreatedBy { get; set; }
+  public int? UpdatedBy { get; set; }
+  public int? DeleteBy { get; set; }
 
-    [ForeignKey("UpdatedBy")]
-    public User UpdatedUser { get; set; }
+  public virtual User User { get; set; }
+  public virtual User Creator { get; set; }
+  public virtual User Updater { get; set; }
+  public virtual User Deleter { get; set; }
+
 }

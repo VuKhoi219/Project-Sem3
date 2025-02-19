@@ -26,12 +26,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Tuan\RiderProjects\Project-Sem3
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Tuan/RiderProjects/Project-Sem3/Areas/Admin/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/Tuan/RiderProjects/Project-Sem3/Areas/Admin/Views/Home/Index2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleDIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tuan/RiderProjects/Project-Sem3/Areas/Admin/Views/Page2/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGFnZTJcSW5kZXguY3NodG1s
+[C:/Users/Tuan/RiderProjects/Project-Sem3/Areas/Admin/Views/Page2/Index2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGFnZTJcSW5kZXgyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Tuan/RiderProjects/Project-Sem3/Areas/Admin/Views/Shared/Error.cshtml]

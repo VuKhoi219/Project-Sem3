@@ -6,48 +6,48 @@ namespace Project_Sem3.Models;
 
 public class InsuranceContract
 {
-    [Key]
-    public int Id { get; set; }
+  [Key]
+  public int Id { get; set; }
 
-    [Required]
-    public int UserId { get; set; }
-    [ForeignKey("UserId")]
-    public User User { get; set; }
+  [Required]
+  public int UserId { get; set; }
 
-    [Required]
-    public int PlanId { get; set; }
+  [Required]
+  public int PlanId { get; set; }
 
-    [ForeignKey("PlanId")]
-    public InsurancePlan InsurancePlan { get; set; }
+  [Required]
+  public DateTime StartDate { get; set; }
 
-    [Required]
-    public DateTime StartDate { get; set; }
+  [Required]
+  public DateTime EndDate { get; set; }
 
-    [Required]
-    public DateTime EndDate { get; set; }
+  [Required]
+  public ContractStatus Status { get; set; }
 
-    [Required]
-    public ContractStatus Status { get; set; }
+  public DateTime? CreatedAt { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
-    [Required]
-    public int CreatedBy { get; set; }
+  public DateTime? UpdatedAt { get; set; }
 
-    [ForeignKey("CreatedBy")]
-    public User CreatedUser { get; set; }
+  public DateTime? DeleteAt { get; set; }
 
-    [Required]
-    public int UpdatedBy { get; set; }
+  public int? CreatedBy { get; set; }
+  public int? UpdatedBy { get; set; }
+  public int? DeleteBy { get; set; }
 
-    [ForeignKey("UpdatedBy")]
-    public User UpdatedUser { get; set; }
+  // Navigation Properties
+  public virtual User User { get; set; }
+  public virtual User Creator { get; set; }
+  public virtual User Updater { get; set; }
+  public virtual User Deleter { get; set; }
+  public virtual InsurancePlan Plan { get; set; }
+
+  // Relationship
+  public virtual ICollection<Payment> Payments { get; set; }
 }
-
 public enum ContractStatus
 {
-    Pending,
-    Active,
-    Expired,
-    Cancelled
+  Pending,
+  Active,
+  Expired,
+  Cancelled
 }

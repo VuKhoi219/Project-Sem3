@@ -13,6 +13,7 @@ builder.Services.AddDbContext<MyDbContext>(options => // Program.cs
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<CalculateCoefficient>();
 builder.Services.AddScoped<CalculateInsuranceServices>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -33,12 +34,12 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "defaultWithArea",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    pattern: "{area:exists}/{controller=Home}/{action=Index2}/{id?}"
 );
 
-// app.MapControllerRoute(
-//     name: "defaultWithoutArea",
-//     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "defaultWithoutArea",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 
