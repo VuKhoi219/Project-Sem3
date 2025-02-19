@@ -41,8 +41,10 @@ public class InsurancePlansController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         plan.CreatedAt = DateTime.UtcNow;
+        
         _context.InsurancePlans.Add(plan);
         await _context.SaveChangesAsync();
+
         return CreatedAtAction(nameof(GetPlanById), new { id = plan.Id }, plan);
     }
 
@@ -50,7 +52,7 @@ public class InsurancePlansController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdatePlan(int id, [FromBody] InsurancePlan updatedPlan)
     {
-        if (id != updatedPlan.Id) return BadRequest("ID mismatch.");
+        
         var plan = await _context.InsurancePlans.FindAsync(id);
         if (plan == null) return NotFound();
 
