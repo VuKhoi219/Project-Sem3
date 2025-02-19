@@ -19,17 +19,22 @@ public class InsurancePlan
     public InsuranceStatus Status { get; set; }
 
     public DateTime? CreatedAt { get; set; }
-
     public DateTime? UpdatedAt { get; set; }
-
     public DateTime? DeleteAt { get; set; }
 
+    // Chỉ lưu ID của User
     public int? CreatedBy { get; set; }
     public int? UpdatedBy { get; set; }
     public int? DeleteBy { get; set; }
-    public virtual User Creator { get; set; }
-    public virtual User Updater { get; set; }
-    public virtual User Deleter { get; set; }
+
+    // Liên kết với User
+    [ForeignKey("CreatedBy")]
+    public virtual User? Creator { get; set; }
+    [ForeignKey("UpdatedBy")]
+    public virtual User? Updater { get; set; }
+    [ForeignKey("DeleteBy")]
+    public virtual User? Deleter { get; set; }
+
 
     // Relationships
     public virtual ICollection<InsuranceContract> InsuranceContracts { get; set; }
