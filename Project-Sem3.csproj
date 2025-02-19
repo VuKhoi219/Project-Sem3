@@ -23,7 +23,6 @@
       </PackageReference>
       <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.0" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
-      <PackageReference Include="System.Net.Mail" Version="1.0.0-rtm-00002" />
     </ItemGroup>
 
     <ItemGroup>

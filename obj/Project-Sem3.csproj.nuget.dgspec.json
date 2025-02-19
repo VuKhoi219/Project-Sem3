@@ -83,10 +83,6 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.13.0, )"
-            },
-            "System.Net.Mail": {
-              "target": "Package",
-              "version": "[1.0.0-rtm-00002, )"
             }
           },
           "imports": [
